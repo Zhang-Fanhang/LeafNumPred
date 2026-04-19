@@ -16,16 +16,17 @@ matplotlib.rc("font", family='YouYuan')
 # 忽略警告
 warnings.filterwarnings('ignore')
 
-# 加载数据集
-data = pd.read_csv('./dataset/data.csv', encoding='utf-8-sig')
-X = data.iloc[:, :5].values
-y = data.iloc[:, 5].values
-feature_names = list(data.columns[:5])
+# 加载训练集和测试集
+data_test = pd.read_csv('./dataset/data_testset.csv', encoding='utf-8-sig')
+data_train = pd.read_csv('./dataset/data_trainset.csv', encoding='utf-8-sig')
 
-# 划分训练集和测试集
-X_train, X_test, y_train, y_test = train_test_split(
-    X, y, test_size=0.2, random_state=42
-)
+X_train = data_train.iloc[:, :5].values
+y_train = data_train.iloc[:, 5].values
+
+X_test = data_test.iloc[:, :5].values
+y_test = data_test.iloc[:, 5].values
+
+feature_names = list(data_train.columns[:5])
 
 # 创建全局变量存储交叉验证结果
 cv_results = []
